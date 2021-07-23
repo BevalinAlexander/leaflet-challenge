@@ -1,12 +1,12 @@
-// Define earthquakes and tectonic plates GeoJSON url variables
+// Defining earthquakes and tectonic plates GeoJSON url variables
 var earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 var tectonicplatesURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 
-// Create two layerGroups
+// Creating two layerGroups
 var earthquakes = L.layerGroup();
 var tectonicplates = L.layerGroup();
 
-// Define tile layers
+// Defining tile layers
 var satelliteMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a>  <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\"></a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
   maxZoom: 18,
@@ -113,10 +113,10 @@ d3.json(earthquakesURL, function(earthquakeData) {
       + new Date(feature.properties.time) + "</p><hr><p>Magnitude: " + feature.properties.mag + "</p>");
     }
   }).addTo(earthquakes);
-  // Sending our earthquakes layer to the createMap function
+  // Pass earthquakes layer to the createMap function
   earthquakes.addTo(myMap);
 
-  // Get the tectonic plate data from tectonicplatesURL
+  // Get plate data from tectonicplatesURL
   d3.json(tectonicplatesURL, function(data) {
     L.geoJSON(data, {
       color: "orange",
